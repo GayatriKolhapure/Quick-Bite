@@ -48,16 +48,13 @@ public class RestaurantServiceImpl {
 	}
 	
 	public MenuItem addMenu(MenuItem menuItem , Long id) {
-		
-		Optional<Restaurant> restaurant = restaurantRepo.findById(id);
-		
-		if(restaurant.isPresent()) {
-			menuItem.setRestaurant(restaurant.get());
-			System.out.println(menuItem);
-			return menuItemRepo.save(menuItem);
-		}
-		
-		return null;
+		 Restaurant restaurant = restaurantRepo.findById(id).get();
+		       
+		    menuItem.setRestaurant(restaurant);
+
+		    restaurant.getMenuItems().add(menuItem);
+
+		    return menuItemRepo.save(menuItem);
 		
 	}
   
