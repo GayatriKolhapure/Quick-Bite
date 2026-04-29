@@ -31,7 +31,6 @@ public class CustomerServiceImpl {
 	public List<Customer> getAllCustomers() {
 		return repo.findAll();
 	}
-
 	
 	public void deleteCustomerById(Long id) {
 		repo.deleteById(id);
