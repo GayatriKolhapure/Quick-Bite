@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.skills.qb.entity.Customer;
 import com.skills.qb.service.CustomerServiceImpl;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
+
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -23,7 +26,8 @@ public class CustomerController {
 	private CustomerServiceImpl service;
 	
 	@PostMapping
-	public Customer saveOrUpdate(@RequestBody Customer customer) {
+	public Customer saveOrUpdate(@RequestBody @Valid Customer customer) {
+		System.out.println("Inside controller "+ customer.getName());
 		return service.saveOrUpdate(customer);
 	}
 	
@@ -38,7 +42,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/byName/{name}")
-	public Customer getCustomerByName(@PathVariable String name) {
+	public Customer getCustomerByName(@PathVariable @Pattern(regexp = "^[a-zA-Z]+(\\s[a-zA-Z]+)*$", message = "Invalid name") String name) {
 		return service.getCustomerByName(name);
 	}
 	

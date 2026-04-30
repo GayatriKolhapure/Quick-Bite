@@ -12,11 +12,6 @@ public class QuickBiteApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QuickBiteApplication.class, args);
 		
-		Restaurant r1 = new Restaurant();
-		
-		r1.getCity();
-		r1.setCity("pune");
-		
 		
 	}
 
