@@ -21,6 +21,7 @@ public class CustomerServiceImpl {
 
 
 	public Customer getCustomerById(Long id) {
+//		int error = 10/0;
 		Optional<Customer> customer = repo.findById(id);
 		if(customer.isPresent()) {
 			return customer.get();

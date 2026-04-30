@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.skills.qb.dtos.MenuQty;
 import com.skills.qb.dtos.OrderRequestDto;
 import com.skills.qb.entity.Customer;
+import com.skills.qb.entity.DeliveryAgent;
 import com.skills.qb.entity.MenuItem;
 import com.skills.qb.entity.Order;
 import com.skills.qb.entity.OrderItem;
@@ -27,6 +28,8 @@ public class OrderServiceImpl {
 	
 	@Autowired
 	private MenuItemRepository menuItemRepo;
+	
+
 	
 	{	
 //	public Order placeOrder(OrderRequestDto orderDto) {
@@ -145,5 +148,36 @@ public class OrderServiceImpl {
 	public List<Order> getAllOrders() {
 		return orderRepo.findAll();
 	}
+
+
+	public Order getOrderById(Long id) {
+		return orderRepo.findById(id).get();
+	}
+
+
+	public List<Order> getOrdersByCustomer(Long customerId) {
+
+	    return orderRepo.findByCustomerId(customerId);
+	}
+
+
+	public List<Order> getOrdersByStatus(String status) {
+		 return orderRepo.findByStatus(status);
+	}
+
+
+	public List<Order> getOrdersByAgent(Long agentId) {
+		return orderRepo.findByDeliveryAgent(agentId);
+	}
+
+
+	public void deleteOrder(Long id) {
+		orderRepo.deleteById(id);
+		
+	}
+
+
+
+
 	
 }

@@ -57,5 +57,27 @@ public class RestaurantServiceImpl {
 		    return menuItemRepo.save(menuItem);
 		
 	}
+
+	public Restaurant updateDetails(Long id, Restaurant updatedData) {
+
+		    Restaurant existing = restaurantRepo.findById(id).get();
+
+		    if (updatedData.getName() != null) 
+		        existing.setName(updatedData.getName());
+
+		    if (updatedData.getCity() != null) 
+		        existing.setCity(updatedData.getCity());
+		    
+		    if (updatedData.getIsOpen() != null) 
+		        existing.setIsOpen(updatedData.getIsOpen());
+		    
+		    if(updatedData.getCuisineType() != null) 
+		    	existing.setCuisineType(updatedData.getCuisineType());
+		    
+		    if(updatedData.getMenuItems() != null)
+		    	existing.setMenuItems(updatedData.getMenuItems());
+
+		    return restaurantRepo.save(existing);
+	}
   
 }
